@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>OJ 社区首页</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav>
+        <h1>OJ 社区</h1>
+        <div class="nav-links">
+            <a href="index.html">主页</a>
+            <a href="discussion/index.html">讨论</a>
+            <a href="message/index.html">私信</a>
+            <a href="ticket/index.html">工单</a>
+            <a href="announcement/index.html">公告</a>
+        </div>
+        <div class="user-info">
+            当前身份: <select id="role-select" onchange="changeRole()">
+                <option value="member">普通成员</option>
+                <option value="admin">管理员</option>
+                <option value="sub_domain">次域主</option>
+                <option value="domain">域主</option>
+            </select>
+        </div>
+    </nav>
+
+    <main>
+        <h2>欢迎来到 OJ 社区</h2>
+        <p>当前权限机制：下级可跨级发工单申请上级权限。</p>
+        
+        <div id="ticket-section">
+            <h3>工单区（跨级申请）</h3>
+            <select id="target-role">
+                <option value="admin">申请管理员权限</option>
+                <option value="sub_domain">申请次域主权限</option>
+                <option value="domain">申请域主权限</option>
+            </select>
+            <button onclick="submitTicket()">发起工单申请</button>
+            <p id="ticket-msg"></p>
+        </div>
+    </main>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

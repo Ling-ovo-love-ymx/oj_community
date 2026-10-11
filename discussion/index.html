@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>讨论区 - 缘故</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .discussion-layout { display: flex; gap: 20px; }
+        .discussion-sidebar { width: 200px; background: #f8f8f8; padding: 15px; border-radius: 5px; }
+        .discussion-sidebar h3 { margin-top: 0; font-size: 14px; color: #666; }
+        .discussion-sidebar a { display: block; padding: 8px 0; color: #333; text-decoration: none; font-size: 14px; }
+        .discussion-sidebar a:hover { color: #007bff; }
+        .discussion-main { flex: 1; }
+        .discussion-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .discussion-toolbar button { padding: 8px 15px; background: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer; }
+        .post-list { list-style: none; padding: 0; }
+        .post-item { padding: 15px; border: 1px solid #ddd; border-radius: 5px; margin-bottom: 10px; background: white; }
+        .post-item h3 { margin: 0 0 5px 0; }
+        .post-item h3 a { color: #333; text-decoration: none; }
+        .post-item h3 a:hover { color: #007bff; }
+        .post-meta { font-size: 12px; color: #999; }
+        .hidden-tag { background: #ff6b6b; color: white; padding: 2px 6px; border-radius: 3px; font-size: 11px; margin-left: 8px; }
+        .chat-entrance { position: fixed; top: 70px; right: 20px; }
+        .chat-entrance button { background: #28a745; color: white; border: none; padding: 10px 18px; border-radius: 20px; cursor: pointer; font-size: 14px; }
+        .chat-entrance button:hover { background: #218838; }
+    </style>
+</head>
+<body>
+    <nav>
+        <h1>缘故</h1>
+        <div class="nav-links">
+            <a href="../index.html">主页</a>
+            <a href="index.html">讨论</a>
+            <a href="../message/index.html">私信</a>
+            <a href="../ticket/index.html">工单</a>
+            <a href="../announcement/index.html">公告</a>
+        </div>
+        <div class="user-info">
+            身份: <span id="current-role">普通成员</span>
+        </div>
+    </nav>
+
+    <div class="chat-entrance">
+        <button onclick="openChat()">群聊</button>
+    </div>
+
+    <main>
+        <div class="discussion-layout">
+            <div class="discussion-sidebar">
+                <h3>分类</h3>
+                <a href="#" onclick="filterPosts('all')">全部</a>
+                <a href="#" onclick="filterPosts('temp')">临时讨论</a>
+                <a href="#" onclick="filterPosts('permanent')">永久讨论</a>
+                <a href="#" onclick="filterPosts('hidden')">隐藏模板</a>
+                <hr>
+                <h3>快捷跳转</h3>
+                <a href="javascript:void(0)" onclick="openHydro()">Hydro 域</a>
+                <a href="javascript:void(0)" onclick="openSchoolOJ()">学校OJ</a>
+            </div>
+
+            <div class="discussion-main">
+                <div class="discussion-toolbar">
+                    <h2>讨论区</h2>
+                    <button onclick="newPost()">+ 新建讨论</button>
+                </div>
+
+                <ul class="post-list" id="post-list">
+                    <li class="post-item" data-type="permanent">
+                        <h3><a href="post.html?id=demo1">C++ 入门模板合集</a></h3>
+                        <div class="post-meta">域主 · 永久</div>
+                    </li>
+                    <li class="post-item" data-type="temp">
+                        <h3><a href="post.html?id=demo2">本周周赛答疑</a></h3>
+                        <div class="post-meta">管理员 · 剩余12天</div>
+                    </li>
+                    <li class="post-item" data-type="hidden">
+                        <h3><a href="post.html?id=h_demo">数组与字符串模板</a><span class="hidden-tag">隐藏</span></h3>
+                        <div class="post-meta">域主 · 仅链接访问</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/main.js"></script>
+    <script>
+        function openChat() {
+            var room = prompt('请输入房间号：', '');
+            if (room) { alert('房间号 ' + room + ' 已提交'); }
+        }
+        function filterPosts(type) {
+            var items = document.querySelectorAll('.post-item');
+            items.forEach(function(item) {
+                if (type === 'all') { item.style.display = 'block'; }
+                else if (type === 'hidden') { item.style.display = item.dataset.type === 'hidden' ? 'block' : 'none'; }
+                else { item.style.display = item.dataset.type === type ? 'block' : 'none'; }
+            });
+        }
+        function newPost() { window.location.href = 'editor.html'; }
+        function openHydro() { window.open('https://hydro.ac', '_blank'); }
+        function openSchoolOJ() { alert('配置学校OJ地址'); }
+    </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>帖子 - 缘故</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .post-container { max-width: 800px; margin: 0 auto; }
+        .post-header { border-bottom: 1px solid #ddd; padding-bottom: 15px; margin-bottom: 20px; }
+        .post-header h1 { margin: 0 0 10px 0; }
+        .post-body { line-height: 1.8; }
+        .post-body pre { background: #f5f5f5; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        .post-body code { background: #f5f5f5; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        .post-body a { color: #007bff; }
+        .post-nav { margin-top: 40px; padding-top: 20px; border-top: 1px solid #ddd; display: flex; justify-content: space-between; }
+        .back-link { display: inline-block; margin-bottom: 15px; color: #007bff; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <nav>
+        <h1>缘故</h1>
+        <div class="nav-links">
+            <a href="../index.html">主页</a>
+            <a href="index.html">讨论</a>
+            <a href="../message/index.html">私信</a>
+            <a href="../ticket/index.html">工单</a>
+            <a href="../announcement/index.html">公告</a>
+        </div>
+    </nav>
+
+    <main>
+        <div class="post-container">
+            <a href="index.html" class="back-link">&larr; 返回讨论区</a>
+            <div class="post-header">
+                <h1 id="post-title">加载中...</h1>
+                <div class="post-meta" id="post-meta"></div>
+            </div>
+            <div class="post-body" id="post-content"></div>
+            <div class="post-nav" id="post-nav"></div>
+        </div>
+    </main>
+
+    <script src="../js/render.js"></script>
+    <script>
+        var params = new URLSearchParams(window.location.search);
+        var postId = params.get('id');
+        var posts = JSON.parse(localStorage.getItem('posts') || '[]');
+        var post = posts.find(function(p) { return p.id === postId; });
+        if (post) {
+            document.getElementById('post-title').innerText = post.title;
+            document.getElementById('post-meta').innerText = post.type + ' · ' + post.time;
+            document.getElementById('post-content').innerHTML = renderMarkdown(post.content);
+        } else {
+            document.getElementById('post-title').innerText = '示例帖子';
+            document.getElementById('post-content').innerHTML = renderMarkdown('# 欢迎\n\n这是示例。\n\n```cpp\nint main(){ return 0; }\n```\n\n[去Hydro](https://hydro.ac)');
+        }
+    </script>
+</body>
+</html>
