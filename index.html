@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>
+<head><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="auth.js"></script> 
     <meta charset="UTF-8">
     <title>OJ 社区首页</title>
     <link rel="stylesheet" href="css/style.css">
@@ -22,7 +23,21 @@
                 <option value="sub_domain">次域主</option>
                 <option value="domain">域主</option>
             </select>
-        </div>
+        </div><!-- 注册表单 -->
+<h2>注册</h2>
+<form id="signup-form">
+    <input type="email" id="signup-email" placeholder="邮箱" required>
+    <input type="password" id="signup-password" placeholder="密码" required>
+    <button type="submit">注册</button>
+</form>
+
+<!-- 登录表单 -->
+<h2>登录</h2>
+<form id="signin-form">
+    <input type="email" id="signin-email" placeholder="邮箱" required>
+    <input type="password" id="signin-password" placeholder="密码" required>
+    <button type="submit">登录</button>
+</form>
     </nav>
 
     <main>
