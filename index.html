@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>OJ 社区首页</title>
-    <!-- 改成绝对路径，前面加 / -->
     <link rel="stylesheet" href="/css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
@@ -26,7 +25,6 @@
         </select>
     </div>
 
-    <!-- 注册表单 -->
     <h2>注册</h2>
     <form id="signup-form">
         <input type="email" id="signup-email" placeholder="邮箱" required>
@@ -34,7 +32,6 @@
         <button type="button" onclick="handleSignUp(document.getElementById('signup-email').value, document.getElementById('signup-password').value)">注册</button>
     </form>
 
-    <!-- 登录表单 -->
     <h2>登录</h2>
     <form id="signin-form">
         <input type="email" id="signin-email" placeholder="邮箱" required>
@@ -58,7 +55,6 @@
     </div>
 </main>
 
-<!-- 把认证逻辑直接写在页面底部兜底 -->
 <script>
 const SUPABASE_URL = 'https://wcdwjygfboktwdjywgkx.supabase.co';
 const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_evi9whKB8ZhVPkr70bwCyQ_yrzC9xzi';
@@ -82,7 +78,6 @@ async function handleSignIn(email, password) {
     }
 }
 </script>
-<!-- 改成绝对路径 -->
 <script src="/js/main.js"></script>
 </body>
 </html>
