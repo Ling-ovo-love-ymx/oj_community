@@ -1,61 +1,62 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="auth.js"></script> 
+<head>
     <meta charset="UTF-8">
     <title>OJ 社区首页</title>
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="auth.js"></script>
 </head>
 <body>
-    <nav>
-        <h1>OJ 社区</h1>
-        <div class="nav-links">
-            <a href="index.html">主页</a>
-            <a href="discussion/index.html">讨论</a>
-            <a href="message/index.html">私信</a>
-            <a href="ticket/index.html">工单</a>
-            <a href="announcement/index.html">公告</a>
-        </div>
-        <div class="user-info">
-            当前身份: <select id="role-select" onchange="changeRole()">
-                <option value="member">普通成员</option>
-                <option value="admin">管理员</option>
-                <option value="sub_domain">次域主</option>
-                <option value="domain">域主</option>
-            </select>
-        </div><!-- 注册表单 -->
-<h2>注册</h2>
-<form id="signup-form">
-    <input type="email" id="signup-email" placeholder="邮箱" required>
-    <input type="password" id="signup-password" placeholder="密码" required>
-    <button type="submit">注册</button>
-</form>
+<nav>
+    <h1>OJ 社区</h1>
+    <div class="nav-links">
+        <a href="index.html">主页</a>
+        <a href="discussion/index.html">讨论</a>
+        <a href="message/index.html">私信</a>
+        <a href="ticket/index.html">工单</a>
+        <a href="announcement/index.html">公告</a>
+    </div>
+    <div class="user-info">
+        当前身份：<select id="role-select" onchange="changeRole()">
+            <option value="member">普通成员</option>
+            <option value="admin">管理员</option>
+            <option value="sub_domain">次级域主</option>
+            <option value="domain">域主</option>
+        </select>
+    </div>
 
-<!-- 登录表单 -->
-<h2>登录</h2>
-<form id="signin-form">
-    <input type="email" id="signin-email" placeholder="邮箱" required>
-    <input type="password" id="signin-password" placeholder="密码" required>
-    <button type="submit">登录</button>
-</form>
-    </nav>
+    <h2>注册</h2>
+    <form id="signup-form">
+        <input type="email" id="signup-email" placeholder="邮箱" required>
+        <input type="password" id="signup-password" placeholder="密码" required>
+        <button type="button" onclick="handleSignUp(document.getElementById('signup-email').value, document.getElementById('signup-password').value)">注册</button>
+    </form>
 
-    <main>
-        <h2>欢迎来到 OJ 社区</h2>
-        <p>当前权限机制：下级可跨级发工单申请上级权限。</p>
-        
-        <div id="ticket-section">
-            <h3>工单区（跨级申请）</h3>
-            <select id="target-role">
-                <option value="admin">申请管理员权限</option>
-                <option value="sub_domain">申请次域主权限</option>
-                <option value="domain">申请域主权限</option>
-            </select>
-            <button onclick="submitTicket()">发起工单申请</button>
-            <p id="ticket-msg"></p>
-        </div>
-    </main>
+    <h2>登录</h2>
+    <form id="signin-form">
+        <input type="email" id="signin-email" placeholder="邮箱" required>
+        <input type="password" id="signin-password" placeholder="密码" required>
+        <button type="button" onclick="handleSignIn(document.getElementById('signin-email').value, document.getElementById('signin-password').value)">登录</button>
+    </form>
+</nav>
 
-    <script src="js/main.js"></script>
+<main>
+    <h2>欢迎来到 OJ 社区</h2>
+    <p>当前权限机制：下级可跨级发工单申请上级权限。</p>
+
+    <div id="ticket-section">
+        <h3>工单区（跨级申请）</h3>
+        <select id="target-role">
+            <option value="admin">申请管理员权限</option>
+            <option value="sub_domain">申请次级域主权限</option>
+            <option value="domain">申请域主权限</option>
+        </select>
+        <button onclick="submitTicket()">发起工单申请</button>
+        <p id="ticket-msg"></p>
+    </div>
+</main>
+
+<script src="js/main.js"></script>
 </body>
 </html>
