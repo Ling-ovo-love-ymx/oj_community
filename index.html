@@ -22,9 +22,8 @@
 
 <script>
 const SUPABASE_URL = 'https://wcdwjygfboktwdjywgkx.supabase.co';
-const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_evi9whKB8ZhVPkr70bwCyQ_yrzC9xzi';
+const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_Evi9vhKB8ZhVPkr70bwCyQ_yrzC9xzi';
 
-// 重点修复：CDN加载后全局已有supabase，必须用解构赋值，不能重新声明！
 const { createClient } = supabase;
 const supabaseClient = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
 
