@@ -1,57 +1,49 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <title>OJ 社区首页</title>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<meta charset="UTF-8">
+<title>OJ 社区</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
-    <h1>OJ 社区</h1>
-    <div id="signup-section">
-        <h2>注册</h2>
-        <input type="email" id="signup-email" placeholder="邮箱">
-        <input type="password" id="signup-password" placeholder="密码">
-        <button id="btn-signup">注册</button>
-    </div>
-    <div id="signin-section">
-        <h2>登录</h2>
-        <input type="email" id="signin-email" placeholder="邮箱">
-        <input type="password" id="signin-password" placeholder="密码">
-        <button id="btn-signin">登录</button>
-    </div>
+<h1>OJ 社区</h1>
+
+<h2>注册</h2>
+<input type="email" id="reg_email" placeholder="邮箱">
+<input type="password" id="reg_password" placeholder="密码">
+<button onclick="register()">注册</button>
+
+<h2>登录</h2>
+<input type="email" id="login_email" placeholder="邮箱">
+<input type="password" id="login_password" placeholder="密码">
+<button onclick="login()">登录</button>
 
 <script>
-const SUPABASE_URL = 'https://wcdwjygfboktwdjywgkx.supabase.co';
-const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_Evi9vhKB8ZhVPkr70bwCyQ_yrzC9xzi';
+const supabase = window.supabase.createClient(
+  'https://wcdjwyjgfboktwdijwgkx.supabase.co',
+   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndjZHdqeWdmYm9rdHdkanl3Z2t4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE3NDQ3NjAsImV4cCI6MjEwNzMyMDc2MH0.CD2HM5ubp2P1ngjSgyb3mGJ_Mpbh1JaSluT7KObKmdU '
+);
 
-const { createClient } = supabase;
-const supabaseClient = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
-
-async function handleSignUp(email, password) {
-    const { data, error } = await supabaseClient.auth.signUp({ email: email, password: password });
-    if (error) { alert('注册失败：' + error.message); } 
-    else { alert('注册成功！请去后台确认'); }
+async function register() {
+  const email = document.getElementById('reg_email').value;
+  const password = document.getElementById('reg_password').value;
+  const { error } = await supabase.auth.signUp({ email, password });
+  if (error) alert('注册失败: ' + error.message);
+  else alert('注册成功！请去邮箱收确认邮件！');
 }
 
-async function handleSignIn(email, password) {
-    const { data, error } = await supabaseClient.auth.signInWithPassword({ email: email, password: password });
-    if (error) { alert('登录失败：' + error.message); } 
-    else { alert('登录成功！');
-    window.location.href = '/index.html';  }
+async function login() {
+  const email = document.getElementById('login_email').value;
+  const password = document.getElementById('login_password').value;
+  const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+  
+  if (error) {
+    alert('登录失败: ' + error.message);
+  } else {
+    alert('登录成功！');
+    window.location.href = '/index.html';
+  }
 }
-
-document.getElementById('btn-signup').addEventListener('click', function() {
-    let email = document.getElementById('signup-email').value;
-    let password = document.getElementById('signup-password').value;
-    handleSignUp(email, password);
-});
-
-document.getElementById('btn-signin').addEventListener('click', function() {
-    let email = document.getElementById('signin-email').value;
-    let password = document.getElementById('signin-password').value;
-    handleSignIn(email, password);
-});
 </script>
 </body>
 </html>
- 
