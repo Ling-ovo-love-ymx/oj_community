@@ -20,14 +20,14 @@
 
 <script>
 const supabaseClient = window.supabase.createClient(
-  'https://wcdjwyjgfboktwdijwgkx.supabase.co',
+  'https://wcdjwyjgfboktwdjywgkx.supabase.co',
   'sb_publishable_Evi9vhKB8ZhVPkr70bwCyQ_yrzC9xzi'
 );
 
 async function register() {
   const email = document.getElementById('reg_email').value;
   const password = document.getElementById('reg_password').value;
-  const { error } = await supabaseClient.auth.signUp({ email, password });
+  const { data, error } = await supabaseClient.auth.signUp({ email, password });
   if (error) alert('注册失败: ' + error.message);
   else alert('注册成功！请去邮箱收确认邮件！');
 }
