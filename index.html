@@ -21,7 +21,7 @@
 <script>
 const supabase = window.supabase.createClient(
   'https://wcdjwyjgfboktwdijwgkx.supabase.co',
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndjZGp3eWpnZmJva3R3ZGlqd2dreCIsInJvbGUiOiJhbm9uIiwiaWF0IjoxNzU4NjA3NDAwLCJleHAiOjIwNzM5NjM0MDB9.1x0jWjx-WyL9k7k3b4YV8zQZQZQZQZQZQZQZQZQZQZQ'
+  'sb_publishable_Evi9vhKB8ZhVPkr70bwCyQ_yrzC9xzi'
 );
 
 async function register() {
@@ -36,7 +36,6 @@ async function login() {
   const email = document.getElementById('login_email').value;
   const password = document.getElementById('login_password').value;
   const { data, error } = await supabase.auth.signInWithPassword({ email, password });
-  
   if (error) {
     alert('登录失败: ' + error.message);
   } else {
